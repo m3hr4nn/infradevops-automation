@@ -1,0 +1,22 @@
+---
+- name: Deploy to all sites
+  hosts: sites
+  become: true
+
+  tasks:
+    - name: Ensure NGINX is installed
+      apt:
+        name: nginx
+        state: present
+        update_cache: true
+
+    - name: Start and enable nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Ping response page
+      copy:
+        dest: /var/www/html/index.html
+        content: "This is {{ inventory_hostname }} and it is up!"
