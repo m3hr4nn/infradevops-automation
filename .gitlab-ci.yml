@@ -1,0 +1,16 @@
+stages:
+  - check
+  - deploy
+
+check_sites:
+  stage: check
+  script:
+    - apt-get update && apt-get install -y python3-pip
+    - pip3 install requests
+    - python3 scripts/check_sites.py
+
+deploy:
+  stage: deploy
+  script:
+    - apt-get update && apt-get install -y ansible sshpass
+    - ansible-playbook -i ansible/inventory.ini ansible/site.yml
