@@ -1,0 +1,4 @@
+https://dc1.myservice.com
+https://dc2.myservice.com
+https://dc3.myservice.com
+https://dc4.myservice.com
